@@ -11,9 +11,12 @@
   "rules": {
     "compat/compat": "error",
     "no-console": "off",
+    "quotes": ["error", "backtick"],
+    "semi": "error",
     "strict": "off"
   },
   env: {
-    node: true
+    "jest": true,
+    "node": true
   }
 }
