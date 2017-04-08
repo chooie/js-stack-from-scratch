@@ -3,8 +3,22 @@
   "version": "1.0.0",
   "author": "Charlie Hebert <charlie.hebert92@gmail.com>",
   "license": "MIT",
+  "browserslist": [
+    "> 1%"
+  ],
   "scripts": {
-    "start": "node ."
+    "start": "babel-node src/",
+    "test": "eslint src && flow"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.1",
+    "babel-preset-env": "^1.3.3",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-compat": "^1.0.2",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "flow-bin": "^0.43.1"
+  }
 }

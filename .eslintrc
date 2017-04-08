@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "compat",
+    "flowtype"
+  ],
+  "rules": {
+    "compat/compat": "error",
+    "no-console": "off",
+    "strict": "off"
+  },
+  env: {
+    node: true
+  }
+}
