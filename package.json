@@ -1,0 +1,10 @@
+{
+  "name": "js-stack-from-scratch",
+  "version": "1.0.0",
+  "author": "Charlie Hebert <charlie.hebert92@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {}
+}
