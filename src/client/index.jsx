@@ -1,26 +1,44 @@
 // @flow
 import 'babel-polyfill';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as RHL from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 
 import App from './app';
-import * as config from '../shared/config';
+import helloReducer from './reducer/hello';
+import { APP_CONTAINER_SELECTOR } from '../shared/config';
+import { isProd } from '../shared/util';
 
-const rootElement = document.querySelector(config.APP_CONTAINER_SELECTOR);
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers =
+      (isProd ? null : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+      compose;
+/* eslint-enable */
 
-const wrapApp = AppComponent =>
-  <RHL.AppContainer>
-    <AppComponent />
-  </RHL.AppContainer>;
+const store = createStore(combineReducers({ hello: helloReducer }),
+  composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-ReactDOM.render(wrapApp(App), rootElement);
+const rootEl = document.querySelector(APP_CONTAINER_SELECTOR);
+
+const wrapApp = (AppComponent, reduxStore) => (
+  <Provider store={reduxStore}>
+    <AppContainer>
+      <AppComponent />
+    </AppContainer>
+  </Provider>
+);
+
+ReactDOM.render(wrapApp(App, store), rootEl);
 
 if (module.hot) {
   // flow-disable-next-line
   module.hot.accept('./app', () => {
     // eslint-disable-next-line global-require
     const NextApp = require('./app').default;
-    ReactDOM.render(wrapApp(NextApp), rootElement);
+    ReactDOM.render(wrapApp(NextApp, store), rootEl);
   });
 }
