@@ -12,6 +12,7 @@ import {
 
 const initialState = Immutable.fromJS({
   message: 'Initial reducer message',
+  messageAsync: 'Initial reducer message for async call',
 });
 
 const helloReducer = (state: Immut = initialState,
