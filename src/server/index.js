@@ -17,6 +17,9 @@ app.get(`/`, function(request, response) {
 });
 
 app.listen(config.WEB_PORT, function() {
-  const profile: string  = util.isProd? `production` : `development`;
-  console.log(`Server running on port ${config.WEB_PORT} '(${profile})'`);
+  const profileMessage: string  = util.isProd? `(production).` :
+        `(development).\nKeep 'yarn dev:wds' running in an other terminal`;
+  console.log(
+    `Server running on port ${config.WEB_PORT} '${profileMessage}'`
+  );
 });

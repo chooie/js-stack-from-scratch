@@ -11,11 +11,15 @@
   "rules": {
     "compat/compat": "error",
     "no-console": "off",
-    "quotes": ["error", "backtick"],
+    "quotes": ["error", "double", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }],
     "semi": "error",
     "strict": "off"
   },
-  env: {
+  "env": {
+    "browser": true,
     "jest": true,
     "node": true
   }

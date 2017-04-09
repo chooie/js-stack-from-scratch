@@ -1,5 +1,10 @@
 // @flow
 import * as config from "../shared/config";
+import * as util from "../shared/util";
+
+const path = util.isProd ?
+      config.STATIC_PATH :
+      `http://localhost:${config.WEBPACK_DEV_SERVER_PORT}/dist`;
 
 export default function renderApp(title: string) {
   return `
@@ -10,7 +15,8 @@ export default function renderApp(title: string) {
         <link rel="stylesheet" href="${config.STATIC_PATH}/css/style.css">
       </head>
       <body>
-        <h1>${title}</h1>
+        <div class="${config.APP_CONTAINER_CLASS}"></div>
+        <script src="${path}/js/bundle.js"></script>
       </body>
     </html>
   `;
