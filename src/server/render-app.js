@@ -1,6 +1,6 @@
 // @flow
-import * as config from "../shared/config";
-import * as util from "../shared/util";
+import * as config from '../shared/config';
+import * as util from '../shared/util';
 
 const path = util.isProd ?
       config.STATIC_PATH :
