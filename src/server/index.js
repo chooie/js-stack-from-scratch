@@ -2,10 +2,9 @@
 import compression from 'compression';
 import express from 'express';
 
+import routing from './routing';
 import * as config from '../shared/config';
 import * as util from '../shared/util';
-import renderApp from './render-app';
-import { helloEndpointRoute } from '../shared/routes';
 
 const app = express();
 
@@ -13,15 +12,7 @@ app.use(compression());
 app.use(config.STATIC_PATH, express.static('dist'));
 app.use(config.STATIC_PATH, express.static('public'));
 
-app.get('/', (request, response) => {
-  response.send(renderApp(config.APP_NAME));
-});
-
-app.get(helloEndpointRoute(), (req, res) => {
-  res.json({
-    serverMessage: `Hello from the server! (received ${req.params.num})`,
-  });
-});
+routing(app);
 
 app.listen(config.WEB_PORT, () => {
   const profileMessage: string = util.isProd ? '(production).' :
