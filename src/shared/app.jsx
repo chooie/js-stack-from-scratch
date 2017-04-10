@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import { APP_NAME } from './config';
@@ -16,7 +17,7 @@ import {
 
 const App = () => (
   <div>
-    <h1>{APP_NAME}</h1>
+    <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
     <Nav />
     <Switch>
       <Route exact path={HOME_PAGE_ROUTE} render={() => <HomePage />} />
