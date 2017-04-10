@@ -1,15 +1,17 @@
 // @flow
+
 import React from 'react';
-import Helmet from 'react-helmet';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
-import { APP_NAME } from './config';
-import Footer from './component/footer';
-import Nav from './component/nav';
-import HomePage from './component/page/home';
+import Helmet from 'react-helmet';
+
 import HelloPage from './component/page/hello';
 import HelloAsyncPage from './component/page/hello-async';
+import HomePage from './component/page/home';
+import Footer from './component/footer';
+import Nav from './component/nav';
 import NotFoundPage from './component/page/not-found';
+import { APP_NAME } from './config';
 import {
   HOME_PAGE_ROUTE,
   HELLO_PAGE_ROUTE,

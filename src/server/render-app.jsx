@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
+import { SheetsRegistry, SheetsRegistryProvider } from 'react-jss';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 
@@ -18,10 +19,13 @@ const renderApp = (location: string,
                    plainPartialState: ?Object,
                    routerContext: ?Object = {}) => {
   const store = initStore(plainPartialState);
+  const sheets = new SheetsRegistry();
   const appHtml = ReactDOMServer.renderToString(
     <Provider store={store}>
       <StaticRouter location={location} context={routerContext}>
-        <App />
+        <SheetsRegistryProvider registry={sheets}>
+          <App />
+        </SheetsRegistryProvider>
       </StaticRouter>
     </Provider>);
 
@@ -34,6 +38,7 @@ const renderApp = (location: string,
         ${head.title}
         ${head.meta}
         <link rel="stylesheet" href="${config.STATIC_PATH}/css/bootstrap.min.css">
+        <style class="${config.JSS_SSR_CLASS}">${sheets.toString()}</style>
       </head>
       <body>
         <div class="${config.APP_CONTAINER_CLASS}">${appHtml}</div>
