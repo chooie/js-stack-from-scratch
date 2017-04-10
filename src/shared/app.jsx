@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import { APP_NAME } from './config';
+import Footer from './component/footer';
 import Nav from './component/nav';
 import HomePage from './component/page/home';
 import HelloPage from './component/page/hello';
@@ -16,7 +17,7 @@ import {
 } from './routes';
 
 const App = () => (
-  <div>
+  <div style={{ paddingTop: 54 }}>
     <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
     <Nav />
     <Switch>
@@ -25,6 +26,7 @@ const App = () => (
       <Route path={HELLO_ASYNC_PAGE_ROUTE} render={() => <HelloAsyncPage />} />
       <Route component={NotFoundPage} />
     </Switch>
+    <Footer />
   </div>
 );
 
